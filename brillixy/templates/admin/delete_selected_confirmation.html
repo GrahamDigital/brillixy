@@ -1,9 +1,6 @@
 {% extends "brillixy/base.html" %}
 {% load brillixytags i18n l10n %}
 
-{% block extrahead %}
-{% media_for 'delete' %}
-{% endblock %}
 
 {% block content %}
     {% if perms_lacking or protected %}
@@ -36,7 +33,7 @@
                 {% for obj in queryset %}
                 <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
                 {% endfor %}
-                
+
                 <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {% trans "Yes, I'm sure" %}</button>
                 <a href="./" class="btn"><i class="icon-ban-circle"></i> {% trans "Cancel" %}</a>
             </div>
