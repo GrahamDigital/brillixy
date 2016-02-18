@@ -15,8 +15,7 @@
     window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";
     </script>
 
-    {% block extrastyle %}{% endblock %}
-    {% block extrahead %}{% endblock %}
+    <link href="{% static "brillixy/css/index.css" %}" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
@@ -71,7 +70,7 @@
                 <li>
                     <a href="{% url 'admin:index' %}" class="btn btn-primary"><i class="icon-list"></i> {% trans 'Home' %}</a>
                 </li>
-                
+
                 {% block breadcrumbs-middle %}
                 {% endblock %}
 
@@ -103,14 +102,14 @@
     <!-- END Messages -->
     {% endif %}
     {% endblock %}
-    
+
     <!-- Content -->
     <div id="content">
         <div class="container">
         {% block content_title %}
         {% if title %}<h1>{{ title }}</h1>{% endif %}
         {% endblock %}
-        
+
         {% block content %}
         {% block object-tools %}{% endblock %}
         {{ content }}
