@@ -12,9 +12,13 @@
     {% endif %}
 
     <script type="text/javascript">
-    window.__admin_media_prefix__ = "{% static "admin/" %}";
-    if (str.charAt(window.__admin_media_prefix__.length - 1) != "/")
-      window.__admin_media_prefix__ = window.__admin_media_prefix__ + "/";
+      var pre = "{% static "admin/" %}"
+
+      if (pre.charAt(pre.length - 1) != "/") {
+        window.__admin_media_prefix__ = pre + "/";
+      } else {
+        window.__admin_media_prefix__ = pre;
+      }
     </script>
 
     <link href="{% static "brillixy/css/index.css" %}" rel="stylesheet" type="text/css" />
