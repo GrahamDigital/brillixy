@@ -12,13 +12,7 @@
     {% endif %}
 
     <script type="text/javascript">
-      var pre = "{% static "admin/" %}"
-
-      if (pre.charAt(pre.length - 1) != "/") {
-        window.__admin_media_prefix__ = pre + "/";
-      } else {
-        window.__admin_media_prefix__ = pre;
-      }
+    window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";
     </script>
 
     <link href="{% static "brillixy/css/index.css" %}" rel="stylesheet" type="text/css" />
