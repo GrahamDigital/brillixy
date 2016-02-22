@@ -2,6 +2,7 @@
 <html>
 <head>
 {% load admin_static brillixytags i18n %}
+{% load url from future %}
     <meta charset="utf-8">
     <title>{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}</title>
 
@@ -15,7 +16,7 @@
     window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";
     </script>
 
-    <link href="{% static "brillixy/css/index.css" %}" rel="stylesheet" type="text/css" />
+    {% block extrastyle %}{% endblock %}
     {% block extrahead %}{% endblock %}
 </head>
 

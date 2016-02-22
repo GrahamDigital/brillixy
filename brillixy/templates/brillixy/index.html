@@ -1,8 +1,8 @@
 {% extends "brillixy/base.html" %}
-{% load i18n %}
+{% load admin_static i18n %}
 
 {% block extrastyle %}
-    <link href="{{ STATIC_URL }}brillixy/css/index.css" rel="stylesheet" type="text/css" />
+      <link href="{% static "brillixy/css/index.css" %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block breadcrumbs %}{% endblock %}

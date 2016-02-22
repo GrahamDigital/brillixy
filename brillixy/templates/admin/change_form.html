@@ -36,13 +36,13 @@
 
             <!-- Form info -->
             <div class="alert form-info" style="display: none;">{% block form_top %}{% endblock %}</div>
-            
+
             <!-- Errors -->
             {% if errors %}
                 <div class="alert alert-error form-errors">
                     <span>{% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</span>
                     {{ adminform.form.non_field_errors }}
-                </div>                
+                </div>
             {% endif %}
 
             <!-- Fields -->
