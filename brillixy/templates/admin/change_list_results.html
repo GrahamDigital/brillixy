@@ -21,7 +21,7 @@
                         &nbsp;&nbsp;
 
                         <a href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"><i class="icon-remove-sign"></i></a>
-                        
+
                         <a href="{{ header.url_toggle }}" title="{% trans "Toggle sorting" %}">{% if header.ascending %}<i class="icon-sort-up"></i>{% else %}<i class="icon-sort-down"></i>{% endif %}</a>
 
                         {% if num_sorted_fields > 1 %}<span class="label" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
