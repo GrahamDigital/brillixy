@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n admin_urls %}
 
 <div class="object-tools row">
     <div class="span7">
@@ -7,20 +7,29 @@
         {% if is_popup %}
         <a href="#" class="btn" onclick="window.close();"><i class="icon-ban-circle"></i> {% trans 'Cancel' %}</a>
         {% else %}
-        <a href="../" class="btn"><i class="icon-ban-circle"></i> {% trans 'Cancel' %}</a>
+        {% url opts|admin_urlname:'changelist'|admin_urlquote as list_url %}
+        {% url opts|admin_urlname:'changelist' as list_url %}
+        <a href="{% add_preserved_filters list_url %}" class="btn"><i class="icon-ban-circle"></i> {% trans 'Cancel' %}</a>
         {% endif%}
-        <button class="btn" type="submit" name="_continue"><i class="icon-save"></i></button>
 
-        {#<button class="btn btn-small" type="submit" name="_addanother"><i class="icon-file"></i> {% trans 'Save and add another' %}</button>#}
+        {% if show_save_and_continue %}
+          <button class="btn" type="submit" name="_continue"><i class="icon-save"></i>{% trans 'Save and continue editing' %}</button>
+        {% endif %}
+
+        {% if show_save_and_add_another %}
+          <button class="btn btn-small" type="submit" name="_addanother"><i class="icon-file"></i> {% trans 'Save and add another' %}</button>
+        {% endif %}
     </div>
 
     {% if change and not is_popup %}
     <div class="span5">
         <div class="pull-right">
         {% block object-tools-items %}
-            <a href="./delete/" class="btn btn-danger"><i class="icon-trash"></i></a>
+            {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+            <a href="{% add_preserved_filters delete_url %}" class="btn btn-danger"><i class="icon-trash"></i></a>
 
-            <a href="./history/" class="btn historylink">{% trans "History" %} <i class="icon-time"></i></a>
+            {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+            <a href="{% add_preserved_filters history_url %}" class="btn historylink">{% trans "History" %} <i class="icon-time"></i></a>
 
             {% if has_absolute_url %}
             <a href="{% url 'admin:view_on_site' content_type_id original.pk %}" class="btn viewsitelink" target="_blank">{% trans "View on site" %} <i class="icon-arrow-right"></i></a>
