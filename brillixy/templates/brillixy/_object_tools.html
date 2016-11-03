@@ -12,9 +12,7 @@
         <a href="{% add_preserved_filters list_url %}" class="btn"><i class="icon-ban-circle"></i> {% trans 'Cancel' %}</a>
         {% endif%}
 
-        {% if show_save_and_continue %}
-          <button class="btn" type="submit" name="_continue"><i class="icon-save"></i>{% trans 'Save and continue editing' %}</button>
-        {% endif %}
+        <button class="btn" type="submit" name="_continue"><i class="icon-save"></i>{% trans 'Save and continue editing' %}</button>
 
         {% if show_save_and_add_another %}
           <button class="btn btn-small" type="submit" name="_addanother"><i class="icon-file"></i> {% trans 'Save and add another' %}</button>
