@@ -32,7 +32,7 @@ def setup_views(site):
     site.index_base = site.index
     site.get_urls_base = site.get_urls
     # add/replace with custom ones
-    site.index = types.MethodType(views.index, site)    
+    site.index = types.MethodType(views.index, site)
     site.get_urls = types.MethodType(get_urls, site)
     site.get_panels = types.MethodType(get_panels, site)
 
@@ -46,7 +46,7 @@ def get_urls(site, urls_base=None):
 
         - admin:view_on_site
     """
-    from django.conf.urls import patterns, url, include
+    from django.conf.urls import url, include
     urlpatterns = urls_base or site.get_urls_base()
     urlnames = [getattr(u, 'name', None) for u in urlpatterns]
     if not 'view_on_site' in urlnames:
