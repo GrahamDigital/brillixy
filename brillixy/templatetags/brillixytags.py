@@ -5,6 +5,7 @@ from django.contrib.admin.views.main import PAGE_VAR
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from brillixy import defaults
+import collections
 
 
 register = template.Library()
@@ -14,7 +15,7 @@ register = template.Library()
 def regroup_apps(apps, groups):
     if groups:
         # ``app_url`` is like '/admin/auth/', so tag is 'auth'
-        apps_tags = map(lambda app: app['app_url'].split('/')[-2], apps)
+        apps_tags = [app['app_url'].split('/')[-2] for app in apps]
         apps_regroup = []
         for group_name, group in groups:
             base_index = None
@@ -55,7 +56,7 @@ def branding_logo():
         src = settings.BRILLIXY_BRANDING.get('logo', None)
     else:
         src = None
-    return src and mark_safe('<img src="%s">' % src) or u''
+    return src and mark_safe('<img src="%s">' % src) or ''
 
 
 @register.simple_tag
@@ -85,7 +86,7 @@ def media_for(name):
     # unknown = []
     config = getattr(settings, 'BRILLIXY_MEDIA', defaults.BRILLIXY_MEDIA)
     for item in config.get(name, ()):
-        if callable(item):
+        if isinstance(item, collections.Callable):
             item = item(name)
         if item.startswith('<'):
             media.append(item)
