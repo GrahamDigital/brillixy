@@ -120,7 +120,10 @@
     <!-- END Content -->
 
     <!-- Footer -->
-    <div id="footer">{% block footer %}{% endblock %}</div>
+    <div id="footer">
+		{% block footer %}{% endblock %}
+		<a href="{{ GD_HP_URL }}" rel="nofollow" style="display: none" aria-hidden="true">Admin HP</a>
+	</div>
     <!-- END Footer -->
 </body>
 </html>
